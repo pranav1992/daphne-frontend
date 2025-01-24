@@ -9,10 +9,12 @@ const Chat = ({ roomName }) => {
     // );
 
     useEffect(() => {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM3NDQ2NjczLCJpYXQiOjE3Mzc0Mzk0NzMsImp0aSI6ImE1ZThkOGQ5MTVmNDRjODc5OWRlNzI2NmM1ZjA5YjVmIiwidXNlcl9pZCI6MX0.3TtwGUQ9hDJS0ydPMBvPhn32wT6wj4KnJZWNcMq7th8"
         chatSocket.current = new WebSocket(
-            'ws://127.0.0.1:8000/ws/socket-server/general/'
+            `ws://127.0.0.1:8000/ws/socket-server/general/?token=${token}`
         )
         chatSocket.current.onmessage = (e) => {
+            console.log(e.data)
             const data = JSON.parse(e.data);
             setMessages((prevMessages) => [...prevMessages, data.message]);
         };
@@ -42,5 +44,4 @@ const Chat = ({ roomName }) => {
         </div>
     );
 };
-
 export default Chat;

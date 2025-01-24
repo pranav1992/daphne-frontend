@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Chat from './chatapp';
+import Chat from './chatappRedux';
 
 function App() {
   return <Chat roomName="general" />;
